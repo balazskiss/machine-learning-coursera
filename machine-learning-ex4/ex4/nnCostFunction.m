@@ -82,12 +82,19 @@ end
 p = sum(sum(Theta1(:, 2:end) .^ 2, 2)) + sum(sum(Theta2(:, 2:end) .^ 2, 2));
 J = sum(sum((-Y) .* log(h) - (1 - Y) .* log(1-h), 2)) / m + lambda * p / (2 * m);
 
+% Part 2 & 3
 
+sigma3 = a3 .- Y;
+sigma2 = (sigma3 * Theta2) .* sigmoidGradient([ones(size(z2, 1), 1) z2]);
+sigma2 = sigma2(:, 2:end);
 
+delta_1 = (sigma2' * a1);
+delta_2 = (sigma3' * a2);
 
-
-
-
+p1 = (lambda / m) * [zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
+p2 = (lambda / m) * [zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
+Theta1_grad = delta_1 ./ m + p1;
+Theta2_grad = delta_2 ./ m + p2;
 
 
 

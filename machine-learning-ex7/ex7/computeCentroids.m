@@ -27,9 +27,10 @@ centroids = zeros(K, n);
 %
 
 
-
-
-
+for i = 1:K
+	nPoints = sum((idx == i));
+	centroids(i, :) = (1 / nPoints) * sum(X((idx == i), :));
+end
 
 
 

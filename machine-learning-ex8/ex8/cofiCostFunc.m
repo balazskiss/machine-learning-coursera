@@ -42,17 +42,11 @@ Theta_grad = zeros(size(Theta));
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+diff = (X * Theta' - Y);
+J1 = (1 / 2) * sum((diff .^ 2)(R == 1));
+regTheta = (1 / 2) * lambda * sum(sum(Theta .^ 2));
+regX = (1 / 2) * lambda * sum(sum(X .^ 2));
+J = J1 + regTheta + regX;
 
 
 % =============================================================

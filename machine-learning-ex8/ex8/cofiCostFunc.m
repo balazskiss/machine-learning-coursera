@@ -48,6 +48,9 @@ regTheta = (1 / 2) * lambda * sum(sum(Theta .^ 2));
 regX = (1 / 2) * lambda * sum(sum(X .^ 2));
 J = J1 + regTheta + regX;
 
+X_grad = (diff .* R) * Theta + (lambda * X);
+Theta_grad = ((diff .* R)' * X) + (lambda * Theta);
+
 
 % =============================================================
 
